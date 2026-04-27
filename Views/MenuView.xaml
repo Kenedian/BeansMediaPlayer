@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="BeansMediaPlayer.MenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <SolidColorBrush x:Key="BgPrimary" Color="#121212"/>
+        <SolidColorBrush x:Key="BgSecondary" Color="#1E1E1E"/>
+        <SolidColorBrush x:Key="BgTertiary" Color="#2A2A2A"/>
+
+        <SolidColorBrush x:Key="Accent" Color="#3A86FF"/>
+
+        <SolidColorBrush x:Key="TextPrimary" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#B0B0B0"/>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource BgTertiary}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Margin" Value="0,4,0,4"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Accent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource BgPrimary}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" MinWidth="300"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Background="{StaticResource BgSecondary}"
+                Padding="20">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Text="Series"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource TextPrimary}"
+                           Margin="0,0,0,20"/>
+
+                <ListBox x:Name="SeriesListBox"
+                     Grid.Row="1"
+                     DisplayMemberPath="Name"
+                     SelectionChanged="SeriesListBox_SelectionChanged"
+                     PreviewMouseRightButtonDown="SeriesListBox_RightClick"
+                     Background="{StaticResource BgTertiary}"
+                     Foreground="{StaticResource TextPrimary}"
+                     BorderThickness="0">
+                </ListBox>
+
+                <StackPanel Grid.Row="2"
+                            Margin="0,20,0,0">
+                    <Button x:Name="ResumeButton"
+                        Content="Resume"
+                        Click="Resume_Click"/>
+                    <Button Content="Import Series" Click="ImportSeries_Click"/>
+                    <Button Content="Exit" Click="Exit_Click"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1"
+                Background="{StaticResource BgTertiary}"
+                Padding="20"
+                Margin="10,0,0,0">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Text="Seasons"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource TextPrimary}"
+                           Margin="0,0,0,20"/>
+
+                <ScrollViewer Grid.Row="1"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="SeasonsPanel"/>
+                </ScrollViewer>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+
+</UserControl>
