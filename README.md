@@ -15,7 +15,5 @@ Offline Netflix-like media player for local TV series.
 ## Folder Import Structure
 
 Show Name/
---- S (1)/
-   --- E (1).mp4
-   --- E (2).mp4
+--- S (1)/E (1).mp4, E (2).mp4
 
